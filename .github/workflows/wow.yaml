@@ -22,11 +22,11 @@ jobs:
           set -e
           mkdir -p "Games/snowball"
  
-          if [[ -f "Games/snowball/Builds.data.br.000.part" && -f "Games/snowball/Builds.data.br.001.part" && -f "Games/snowball/Builds.data.br.002.part" ]]; then
+          if [[ -f "Games/snowball/Builds.wasm.br.000.part" && -f "Games/snowball/Builds.wasm.br.001.part" && -f "Games/snowball/Builds.wasm.br.002.part" ]]; then
             echo "All pieces found. Combining..."
-            cat "Games/snowball/Builds.data.br.000.part" "Games/snowball/Builds.data.br.001.part" "Games/snowball/Builds.data.br.002.part" > "Games/snowball/Builds.data.br"
-            echo "Combined -> Games/snowball/Builds.data.br"
-            ls -lh "Games/snowball/Builds.data.br"
+            cat "Games/snowball/Builds.wasm.br.000.part" "Games/snowball/Builds.wasm.br.001.part" "Games/snowball/Builds.wasm.br.002.part" > "Games/snowball/Builds.wasm.br"
+            echo "Combined -> Games/snowball/Builds.wasm.br"
+            ls -lh "Games/snowball/Builds.wasm.br"
           else
             echo "ERROR: Missing one or more pieces."
             exit 1
@@ -37,11 +37,11 @@ jobs:
           set -e
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git rm -f -- "Games/snowball/Builds.data.br.000.part" "Games/snowball/Builds.data.br.001.part" "Games/snowball/Builds.data.br.002.part" || true
-          git add "Games/snowball/Builds.data.br"
+          git rm -f -- "Games/snowball/Builds.wasm.br.000.part" "Games/snowball/Builds.wasm.br.001.part" "Games/snowball/Builds.wasm.br.002.part" || true
+          git add "Games/snowball/Builds.wasm.br"
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Combine parts into Builds.data.br and remove pieces"
+            git commit -m "Combine parts into Builds.wasm.br and remove pieces"
             git push
           fi
